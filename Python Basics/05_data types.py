@@ -1,5 +1,7 @@
 # Strings.
 # Subscripting :
+# Indexing starts at 0.
+print("hello"[0])  # First character
 print("hello"[4])
 print("hello"[-2]) 
 
