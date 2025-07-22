@@ -64,7 +64,7 @@ fruit_basket = ["Apple", "Banana", "Cherry"]
 vegetable_basket = ["Carrot", "Broccoli", "Spinach"]
 grocery_basket = [fruit_basket, vegetable_basket]  # Creating a nested list.
 print(grocery_basket)
-
+# Accessing elements in a nested list.
 fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
 vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
  
