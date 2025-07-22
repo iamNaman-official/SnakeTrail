@@ -20,19 +20,21 @@ Scissors = '''    _______
       (____)
 ---.__(___)'''
 
-
-
+choices = [Rock , Paper , Scissors]
+choices_names = ["Rock", "Paper", "Scissors"]
 
 print("Welcome to the Rock Paper Scissors game!")
 print("Type 0 for Rock, 1 for Paper, or 2 for Scissors and press Enter: ")
+
 import random
 user_choice = int(input("Enter the number corresponding to your choice: "))
-print(choices[user_choice])  # Displays the user's choice using the game images.
-choices = [Rock , Paper , Scissors]
-computer_choice = random.randint(0, 2)  # Randomly selects a choice for the computer.
-print(choices[computer_choice])  # Displays the computer's choice using the game images.
+print(f"You chose: {choices_names[user_choice]}")  # Displays the user's choice using the game images.
 print(f"You chose: {choices[user_choice]}")
+
+computer_choice = random.randint(0, 2)  # Randomly selects a choice for the computer.
+print(f"Computer chose: {choices_names[computer_choice]}")  # Displays the computer's choice using the game images.
 print(f"Computer chose: {choices[computer_choice]}")
+
 if user_choice == computer_choice:
     print("It's a tie!")
 elif (user_choice == 0 and computer_choice == 2) or \
