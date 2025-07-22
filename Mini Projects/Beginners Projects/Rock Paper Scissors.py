@@ -1,10 +1,36 @@
 # The Rock Paper scissors game code :
+
+
+Rock = '''---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___) '''
+
+Paper = '''---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________) '''
+
+Scissors = '''    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)'''
+
+
+
+
 print("Welcome to the Rock Paper Scissors game!")
 print("Type 0 for Rock, 1 for Paper, or 2 for Scissors and press Enter: ")
 import random
 user_choice = int(input("Enter the number corresponding to your choice: "))
-choices = ["Rock" , "Paper" , "Scissors"]
+print(choices[user_choice])  # Displays the user's choice using the game images.
+choices = [Rock , Paper , Scissors]
 computer_choice = random.randint(0, 2)  # Randomly selects a choice for the computer.
+print(choices[computer_choice])  # Displays the computer's choice using the game images.
 print(f"You chose: {choices[user_choice]}")
 print(f"Computer chose: {choices[computer_choice]}")
 if user_choice == computer_choice:
