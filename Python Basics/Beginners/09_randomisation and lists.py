@@ -58,3 +58,16 @@ print(friends[random_index])
 # using len() :
 random.randint(0, len(friends) - 1)  # Generates a random index based on the length of the list.
 print(f"Randomly selected friend using len: {friends[random.randint(0, len(friends) - 1)]}")
+
+# Nested Lists :
+fruit_basket = ["Apple", "Banana", "Cherry"]
+vegetable_basket = ["Carrot", "Broccoli", "Spinach"]
+grocery_basket = [fruit_basket, vegetable_basket]  # Creating a nested list.
+print(grocery_basket)
+
+fruits = ["Strawberries", "Nectarines", "Apples", "Grapes", "Peaches", "Cherries", "Pears"]
+vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
+ 
+dirty_dozen = [fruits, vegetables]
+ 
+print(dirty_dozen[1][1])
