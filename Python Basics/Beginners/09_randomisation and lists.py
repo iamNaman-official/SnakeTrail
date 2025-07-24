@@ -71,3 +71,9 @@ vegetables = ["Spinach", "Kale", "Tomatoes", "Celery", "Potatoes"]
 dirty_dozen = [fruits, vegetables]
  
 print(dirty_dozen[1][1])
+
+# useful stuff :
+# is.digit() checks if the input is a digit.it is string function.
+# If the input is a digit, it will return True, otherwise False.
+# then it converts the input to an integer.
+# exit() is used to terminate the program.
