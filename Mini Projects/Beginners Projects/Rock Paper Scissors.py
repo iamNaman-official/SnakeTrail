@@ -25,15 +25,27 @@ choices_names = ["Rock", "Paper", "Scissors"]
 # Welcoming to the game and instructions for the user.
 print("Welcome to the Rock Paper Scissors game!")
 print("Type 0 for Rock, 1 for Paper, or 2 for Scissors and press Enter: ")
+
 # The user is prompted to enter their choice.
 import random
-user_choice = int(input("Enter the number corresponding to your choice: "))
-print(f"You chose: {choices_names[user_choice]}")  # Displays the user's choice using the game images.
-print(f"You chose: {choices[user_choice]}")
+user_choice = input("Enter the number corresponding to your choice: ")
+if user_choice.isdigit():
+    user_choice = int(user_choice)  # Converts the input to an integer.
+    if user_choice in [0, 1, 2]:  # Validates the user's choice.
+       print(f"You chose: {choices_names[user_choice]}")  # Displays the user's choice using the game images.
+       print(f"You chose: {choices[user_choice]}")
+    else:
+      print("Invalid input! Please enter a number between 0 and 2.")
+      exit()  
+else:
+    print("Invalid input! Please enter a number between 0 and 2.")
+    exit()
+
 # The computer randomly selects a choice from the available options.
 computer_choice = random.randint(0, 2)  # Randomly selects a choice for the computer.
 print(f"Computer chose: {choices_names[computer_choice]}")  # Displays the computer's choice using the game images.
 print(f"Computer chose: {choices[computer_choice]}")
+
 # The game logic to determine the winner.
 # The game rules are applied to determine the winner based on the choices made by the user and computer.
 if user_choice == computer_choice:
