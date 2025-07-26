@@ -38,7 +38,7 @@ for char in range(0 , nr_numbers): # Changed range to start from 0 because it wi
 
 print(f"Your password is: {password_list}")
 random.shuffle(password_list)  # Shuffle the list to make the password more random
-print(password_list)
+print(f"Your shuffled password is:{password_list}")
 
 password = ""
 for char in password_list:
