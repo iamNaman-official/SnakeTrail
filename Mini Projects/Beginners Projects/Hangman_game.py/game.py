@@ -15,6 +15,7 @@ print(placeholder)
 game_over = False
 correct = []
 lives = 6
+all_guesses = []
 
 while not game_over:
     print(f"****************************{lives}/6 LIVES LEFT****************************")
@@ -25,6 +26,11 @@ while not game_over:
         print("Please enter a single alphabetic character (a-z).")
         continue
 
+    if guess in all_guesses:
+        print(f"You've already guessed {guess}. Try a different letter.")
+        continue
+
+    all_guesses.append(guess)    
     # Build display from current correct guesses (do not modify correct here)
     display = ""
     for letter in chosen_word:
@@ -40,10 +46,6 @@ while not game_over:
     if guess in chosen_word and guess not in correct:
         correct.append(guess)
         print(f"Good job! {guess} is in the word.")
-    elif guess in correct:
-        print(f"You've already guessed {guess}")
-        print("No penalty for repeated guess.")
-        print(f"Lives remaining: {lives}")
     else:
         lives -= 1
         print(f"You lost a life. Lives remaining: {lives}")
