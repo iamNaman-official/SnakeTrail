@@ -19,26 +19,32 @@ lives = 6
 while not game_over:
     print(f"****************************{lives}/6 LIVES LEFT****************************")
     guess = input("Guess a letter: ").lower()
+
+    # Validate input: only accept single alphabetic characters
+    if not guess.isalpha() or len(guess) != 1:
+        print("Please enter a single alphabetic character (a-z).")
+        continue
+
+    # Build display from current correct guesses (do not modify correct here)
     display = ""
     for letter in chosen_word:
         if letter == guess:
             display += letter
-            correct.append(letter)
         elif letter in correct:
-            display += letter    
+            display += letter
         else:
-            display += "_" 
+            display += "_"
     print("Word to guess:", display)
 
-    if guess in display:
+    # Handle cases: new correct guess, repeated guess, or wrong guess
+    if guess in chosen_word and guess not in correct:
+        correct.append(guess)
         print(f"Good job! {guess} is in the word.")
-        
-    if guess in correct:
+    elif guess in correct:
         print(f"You've already guessed {guess}")
         print("No penalty for repeated guess.")
         print(f"Lives remaining: {lives}")
-
-    if guess not in chosen_word:
+    else:
         lives -= 1
         print(f"You lost a life. Lives remaining: {lives}")
         if lives == 0:
@@ -50,4 +56,4 @@ while not game_over:
         game_over = True
         print("You Win!")
 
-    print(stages[lives])    
+    print(stages[lives])
