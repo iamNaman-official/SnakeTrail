@@ -22,6 +22,7 @@ while not game_over:
     guess = input("Guess a letter: ").lower()
 
     # Validate input: only accept single alphabetic characters
+    #Preventing user from enetering invalid inputs like numbers, special characters, or multiple letters
     if not guess.isalpha() or len(guess) != 1:
         print("Please enter a single alphabetic character (a-z).")
         continue
@@ -29,7 +30,9 @@ while not game_over:
     if guess in all_guesses:
         print(f"You've already guessed {guess}. Try a different letter.")
         continue
+    #Preventing user from entering the same letter again, And Works as flood gate controls the logic flow of the game.
 
+    #Record all the inputs in a separate list to track all inputs.
     all_guesses.append(guess)    
     # Build display from current correct guesses (do not modify correct here)
     display = ""
