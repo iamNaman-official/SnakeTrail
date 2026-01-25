@@ -15,3 +15,15 @@ a8"     "" 88 88P'    "8a 88P'    "8a a8P_____88 88P'   "Y8
               88                                             
               88           
 """
+
+# Updated Art Variable
+HACKER_ART = r"""
+      |\__/,|   (`\
+    _.|o o  |_   ) )
+-(((---(((--------
+[  HACKER MODE   ]
+[  INITIALIZED   ]
+[  >_            ]
+------------------
+"""
+
