@@ -40,6 +40,7 @@ while isAuction:
         auction_pool = itemslist.items_list.copy()
 
     current_items = random.choice(auction_pool)
+    auction_pool.remove(current_items)
     print(f"Item up for auction: {current_items}")
 
     while True:
@@ -86,6 +87,19 @@ while isAuction:
     if continue_auction == "no":
         auction_running = False
         print("Exiting Auction House. Goodbye!")
-        exit
+        exit()
     else:
-        print("Setting up next item...")
+        if not auction_pool:
+            print("\nWARNING: We have auctioned every item in the catalogue!")
+            reload_choice = input("Do you want to reload the items and start over? (yes/no): ").lower()
+            if reload_choice == "yes":
+                auction_pool = itemslist.items_list.copy() 
+                print("Catalogue reloaded! Getting next item...")
+            else:
+                print("Auction House closing.")
+                auction_running = False
+        else:
+            print("Setting up next item...")
+     
+
+
