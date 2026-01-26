@@ -1,11 +1,10 @@
 import os
-import time
 import art
 import itemslist
 import random
 print(art.logo)
 
-def bid_calculator(bids):
+def bid_calculator(bids,current_items):
     highest_bid = 0
     winner  = []
     for bidder in bids:
@@ -17,32 +16,38 @@ def bid_calculator(bids):
         if bids[bidder] == highest_bid:
             winner.append(bidder)
 
-    print("-------------------- Auction Result ------------------")  
+    print(f"-------------------- Auction Result: {current_items} ------------------")  
     if len(winner) == 1:
-        print(f"The winner is {winner[0]} with a bid of ${highest_bid:.2f}")
+        print(f"The winner is {winner[0]} with a bid of ${highest_bid:.2f} for the item {current_items}")
     else:
         print(f"It's a tie between the following bidders with a bid of ${highest_bid:.2f}:")
         for w in winner:
             print(f"- {w}")    
     print("Total bidders:",len(bids))
+    
 
-
-
+auction_pool = itemslist.items_list.copy()
 
 isAuction = True
-isBiding = True
-bids = {}
+
 while isAuction:
     print("Welcome to the Blind Auction Program.")
     print("Available items for auction:")
 
-# Initialize auction pool
-    auction_pool = ""
     if not auction_pool:
-        auction_pool = itemslist.items_list.copy()
+        print("All items have been auctioned!")
+        reload = input("Reload catalogue? (yes/no): ").lower()
+        if reload == "yes":
+            auction_pool = itemslist.items_list.copy()
+        else:
+            print("Goodbye!")
+            break
 
     current_items = random.choice(auction_pool)
     auction_pool.remove(current_items)
+
+    isBiding = True
+    bids = {}
 
     while isBiding:
         print(f"Item up for auction: {current_items}")
@@ -55,7 +60,9 @@ while isAuction:
                 print("Name cannot be empty. Please enter a valid name.")
             else:
                 break    
-             
+
+#Add the wallet system and minimum base price of the auction item.
+
         while True:
             try:
                 bid = float(input("What is your bid?: $"))
@@ -75,8 +82,8 @@ while isAuction:
             print("=====================================================================================\n")
 
         if more_bidders == "no":
-            isAuction = False
-            bid_calculator(bids)
+            isBiding = False
+            bid_calculator(bids,current_items)
         else:
             print("Clearing the screen for the next bidder...\n")
             print("Please pass the device to the next bidder.\n")
@@ -89,21 +96,11 @@ while isAuction:
         print("Invalid input.")
 
     if continue_auction == "no":
-        auction_running = False
+        isAuction = False
         print("Exiting Auction House. Goodbye!")
         exit()
-    else:
-        if not auction_pool:
-            print("\nWARNING: We have auctioned every item in the catalogue!")
-            reload_choice = input("Do you want to reload the items and start over? (yes/no): ").lower()
-            if reload_choice == "yes":
-                auction_pool = itemslist.items_list.copy() 
-                print("Catalogue reloaded! Getting next item...")
-            else:
-                print("Auction House closing.")
-                auction_running = False
-        else:
-            print("Setting up next item...")
+
+
      
 
 
