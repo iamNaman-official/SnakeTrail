@@ -30,53 +30,57 @@ def bid_calculator(bids):
 
 
 isAuction = True
+isBiding = True
 bids = {}
 while isAuction:
     print("Welcome to the Blind Auction Program.")
     print("Available items for auction:")
 
+# Initialize auction pool
     auction_pool = ""
     if not auction_pool:
         auction_pool = itemslist.items_list.copy()
 
     current_items = random.choice(auction_pool)
     auction_pool.remove(current_items)
-    print(f"Item up for auction: {current_items}")
 
-    while True:
-        name = input("What is your name?: ")
-        if name in bids:
-            print(f"The name {name} already bid please enter the unique name.")
-        elif name == "":
-            print("Name cannot be empty. Please enter a valid name.")
-        else:
-            break    
-             
-    while True:
-        try:
-            bid = float(input("What is your bid?: $"))
-            if bid < 0:
-                print("Bid amount cannot be negative. Please enter a valid bid.")
+    while isBiding:
+        print(f"Item up for auction: {current_items}")
+
+        while True:
+            name = input("What is your name?: ")
+            if name in bids:
+                print(f"The name {name} already bid please enter the unique name.")
+            elif name == "":
+                print("Name cannot be empty. Please enter a valid name.")
             else:
-                break
-        except ValueError:
-            print("Invalid input. Please enter a valid number for the bid amount.")
+                break    
+             
+        while True:
+            try:
+                bid = float(input("What is your bid?: $"))
+                if bid < 0:
+                    print("Bid amount cannot be negative. Please enter a valid bid.")
+                else:
+                    break
+            except ValueError:
+                print("Invalid input. Please enter a valid number for the bid amount.")
 
-    bids[name] = bid
+        bids[name] = bid
 
-    more_bidders = input("Are there any other bidders? Type 'yes' or 'no'.\n").lower()
-    while more_bidders not in ["yes", "no"]:
-        print("Invalid input. Please Check your spelling and try again.\n")
         more_bidders = input("Are there any other bidders? Type 'yes' or 'no'.\n").lower()
-        print("=====================================================================================\n")
+        while more_bidders not in ["yes", "no"]:
+            print("Invalid input. Please Check your spelling and try again.\n")
+            more_bidders = input("Are there any other bidders? Type 'yes' or 'no'.\n").lower()
+            print("=====================================================================================\n")
 
-    if more_bidders == "no":
-        isAuction = False
-        bid_calculator(bids)
-    else:
-        print("Clearing the screen for the next bidder...\n")
-        print("Please pass the device to the next bidder.\n")
-        os.system('cls' if os.name == 'nt' else 'clear')
+        if more_bidders == "no":
+            isAuction = False
+            bid_calculator(bids)
+        else:
+            print("Clearing the screen for the next bidder...\n")
+            print("Please pass the device to the next bidder.\n")
+            os.system('cls' if os.name == 'nt' else 'clear')
 
     while True:
         continue_auction = input("\nDo you want to auction another item? (yes/no): ").lower()
