@@ -6,7 +6,7 @@ print(art.logo)
 
 def bid_calculator(bids,current_items):
     highest_bid = 0
-    winner  = []
+    winner = []
     for bidder in bids:
         bid_amount = bids[bidder]
         if bid_amount > highest_bid:
@@ -19,6 +19,8 @@ def bid_calculator(bids,current_items):
     print(f"-------------------- Auction Result: {current_items} ------------------")  
     if len(winner) == 1:
         print(f"The winner is {winner[0]} with a bid of ${highest_bid:.2f} for the item {current_items}")
+        wallets[winner[0]] -= highest_bid
+        print(f"{winner[0]}'s remaining wallet balance: ${wallets[winner[0]]:.2f}")
     else:
         print(f"It's a tie between the following bidders with a bid of ${highest_bid:.2f}:")
         for w in winner:
@@ -27,7 +29,7 @@ def bid_calculator(bids,current_items):
     
 
 auction_pool = itemslist.items_list.copy()
-
+wallets = {}
 isAuction = True
 
 while isAuction:
@@ -59,7 +61,22 @@ while isAuction:
             elif name == "":
                 print("Name cannot be empty. Please enter a valid name.")
             else:
-                break    
+                if name not in wallets:
+                    print(f"Welcome {name}!. We are setting up your wallet for the auction.")  
+                    while True:
+                        try:
+                            initial_amount = float(input(f"Enter the amount to add to your wallet, {name}: $"))
+                            if initial_amount < 0:
+                                print("amount cannot be negative. Please enter a valid amount.")
+                            else:
+                                wallets[name] = initial_amount
+                                print(f"Wallet created for {name} with balance: ${wallets[name]:.2f}")
+                                break
+                        except ValueError:
+                            print("Invalid input. Please enter a valid number for the amount.")
+                else:
+                    print(f"Welcome back {name}! Your current wallet balance is: ${wallets[name]:.2f}")
+                break                
 
 #Add the wallet system and minimum base price of the auction item.
 
@@ -69,6 +86,10 @@ while isAuction:
                 if bid < 0:
                     print("Bid amount cannot be negative. Please enter a valid bid.")
                 else:
+                    if bid > wallets[name]:
+                        print(f"Insufficient funds in wallet. Your current balance is: ${wallets[name]:.2f}")
+                    else:
+                        wallets[name] -= bid
                     break
             except ValueError:
                 print("Invalid input. Please enter a valid number for the bid amount.")
