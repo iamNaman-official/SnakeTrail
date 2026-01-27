@@ -3,7 +3,7 @@ import art
 import itemslist
 import random
 print(art.logo)
-# add base price for items and improve wallet sysytem
+# add base price for items and improve wallet system and bid validation and tie breaker system and auction history log and user authentication system.
 def bid_calculator(bids,current_items):
     highest_bid = 0
     winner = []
